@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TicketService API",
+    "description": "APIs for book ticket service",  
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/getFlightInformation": {
+      "post": {
+        "description": "Before booking a ticket, flight information is generated based on the reservation date provided by the user and provided to the user for selection.",
+        "operationId": "getFlightInformation",
+        "parameters": [
+          {
+            "name": "departure_city",
+            "in": "query",
+            "description": "departure city for flight",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "SZX"
+          },
+          {
+            "name": "arrival_city",
+            "in": "query",
+            "description": "arrival city for flight",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "SHA"
+          },
+          {
+            "name": "departure_date",
+            "in": "query",
+            "description": "departure date for flight",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2024-02-22"
+          }
+        ],
+        
+        "responses": {
+          "200": {
+            "description": "Search flight information successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/bookTicket": {
+      "get": {
+        "description": "Book a ticket using the flight number provided by the user",
+        "operationId": "bookTicket",
+        "parameters": [
+          {
+            "name": "flight_number",
+            "in": "query",
+            "description": "flight number for book ticket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Y87587"
+          }
+        ],
+        
+        "responses": {
+          "200": {
+            "description": "Successfully book a ticket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/sendReservationEmail": {
+      "get": {
+        "description": "Send ticket Reservation by email",
+        "operationId": "sendReservationEmail",
+        "parameters": [
+          {
+            "name": "email_address",
+            "in": "query",
+            "required": true,
+            "description": "The email address for receiving emails",
+            "schema": {
+              "type": "string"
+            },
+            "example": "alexwuu@amazon.com"
+          }
+        ],
+        
+        "responses": {
+          "200": {
+            "description": "Reservation email send successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
